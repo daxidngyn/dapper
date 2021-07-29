@@ -1,5 +1,8 @@
 import Head from "next/head";
+import Image from "next/image";
 import Navbar from "../components/Navbar";
+import svgHandshake from "../assets/svgHandshake.svg";
+import imgHandshake from "../assets/imgHandshake.png";
 
 export default function Home() {
   return (
@@ -9,6 +12,43 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <div className="pt-24 container px-4 mx-auto flex flex-wrap flex-col items-center w-full text-gray-900">
+        {/* <div className="flex flex-col items-center justify-center space-y-2">
+          <h1 className="text-5xl font-semibold tracking-wide text-gray-900">
+            Dapper
+          </h1>
+          <div className="text-xl font-medium text-gray-600">Placeholder</div>
+        </div>
+        <div className="absolute top-0">
+          <Image src={svgHandshake} />
+        </div> */}
+        <div className="grid grid-cols-2 w-full">
+          <div className="pl-36 space-y-12 pt-2">
+            <div className="space-y-1">
+              <div className="text-7xl font-semibold">Welcome to</div>
+              <div className="text-blue-600 font-bold text-8xl">Dapper</div>
+            </div>
+            <div>
+              <div className="text-2xl text-gray-700">
+                The greeting we all know and love, now digitalized.
+              </div>
+            </div>
+            <div className="space-x-8">
+              <button className="p-4 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out">
+                Connect wallet
+              </button>
+              <button className="p-4 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
+                Explore our marketplace &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <Image src={imgHandshake} />
+          </div>
+        </div>
+      </div>
+
       {/* <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">
           Welcome to{" "}
