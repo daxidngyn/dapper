@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import svgHandshake from "../assets/svgHandshake.svg";
 import imgHandshake from "../assets/imgHandshake.png";
 
@@ -48,6 +49,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
 
       {/* <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">
