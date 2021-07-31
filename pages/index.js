@@ -11,12 +11,61 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
+const NextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <FaAngleRight
+      className={className}
+      style={{ ...style, display: "block", cursor: "pointer", color: "black" }}
+      onClick={onClick}
+    />
+  );
+};
+
+const PrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <FaAngleLeft
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        cursor: "pointer",
+        color: "black",
+      }}
+      onClick={onClick}
+    />
+  );
+};
+
 export default function Home() {
   const settings = {
     infinite: true,
-    speed: 500,
-    slidesToShow: 2,
+    speed: 750,
+    slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 640,
+        settings: {
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -43,10 +92,10 @@ export default function Home() {
               </div>
             </div>
             <div className="space-x-8 flex">
-              <button className="lg:p-4 p-2 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out">
+              <button className="lg:p-4 sm:p-3 p-1.5 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out">
                 Connect wallet
               </button>
-              <button className="lg:p-4 p-2 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
+              <button className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
                 Explore our marketplace &rarr;
               </button>
             </div>
@@ -58,18 +107,33 @@ export default function Home() {
         </div>
       </div>
       {/* WHAT IS DAPPER */}
-      <div className=" h-auto p-64 bg-hero-pattern">
-        <div className="flex justify-center items-center bg-blue-200 p-20 mx-auto">
-          What is Dapper?
+      <div className=" h-auto py-20 bg-hero-pattern px-4 sm:px-8">
+        <div className="flex justify-center items-center bg-blue-100 p-8 mx-auto max-w-4xl">
+          <div className="grid sm:grid-cols-2 w-full space-y-4">
+            <div className="flex flex-col justify-center">
+              <Image src={imgHandshake} />
+            </div>
+            <div className="flex flex-col justify-center md:space-y-4 sm:space-y-2 space-y-4 sm:pl-8">
+              <div className="md:text-4xl text-3xl font-semibold">
+                What is Dapper?
+              </div>
+              <div className="text-lg text-gray-500">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                exercitationem praesentium nihil.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {/*md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center*/}
-      <div className="text-center w-full text-gray-900 px-12 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
+      <div className="text-center w-full text-gray-900 px-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
         <div className="text-2xl font-medium">Featured Daps</div>
         <Slider {...settings} className="">
           <DapCard title="1" />
           <DapCard title="2" />
           <DapCard title="3" />
+          <DapCard title="4" />
         </Slider>
       </div>
     </div>
