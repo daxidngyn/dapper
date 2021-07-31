@@ -16,7 +16,7 @@ function Footer() {
           <div className="text-black flex flex-col md:items-center">
             {/* <h1 className="text-2xl font-black">Dapper</h1> */}
             <div className="my-6">
-              <ul className="md:flex items-center space-x-8">
+              <ul className="flex items-center space-x-8">
                 {navigation.map((route) => (
                   <li className="cursor-pointer lg:py-0">{route.name}</li>
                 ))}
