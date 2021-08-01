@@ -6,6 +6,11 @@ import imgHandshake from "../assets/imgHandshake.png";
 import DapCard from "../components/DapCard";
 import Slider from "react-slick";
 
+import gif1 from "../public/GIFs/1.gif";
+import gif2 from "../public/GIFs/2.gif";
+import gif3 from "../public/GIFs/3.gif";
+import gif4 from "../public/GIFS/4.gif";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -75,7 +80,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="pb-8 md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4">
+      <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4">
         <div className="grid md:grid-cols-2 w-full grid-cols-1">
           <div className="2xl:pl-36 space-y-12 pt-2 md:order-1 order-2">
             <div className="space-y-1">
@@ -108,7 +113,7 @@ export default function Home() {
       </div>
       {/* WHAT IS DAPPER */}
       <div className=" h-auto py-20 bg-hero-pattern px-4 sm:px-8">
-        <div className="flex justify-center items-center bg-blue-100 p-8 mx-auto max-w-4xl">
+        <div className="flex justify-center items-center bg-blue-100 p-8 mx-auto max-w-4xl rounded-md">
           <div className="grid sm:grid-cols-2 w-full space-y-4">
             <div className="flex flex-col justify-center">
               <Image src={imgHandshake} />
@@ -118,9 +123,7 @@ export default function Home() {
                 What is Dapper?
               </div>
               <div className="text-lg text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                What a great question! We be minting handshakes don't sleep
               </div>
             </div>
           </div>
@@ -130,10 +133,10 @@ export default function Home() {
       <div className="text-center w-full text-gray-900 px-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
         <div className="text-2xl font-medium">Featured Daps</div>
         <Slider {...settings} className="">
-          <DapCard title="1" />
-          <DapCard title="2" />
-          <DapCard title="3" />
-          <DapCard title="4" />
+          <DapCard title="1" gif={gif1} />
+          <DapCard title="2" gif={gif2} />
+          <DapCard title="3" gif={gif3} />
+          <DapCard title="4" gif={gif4} />
         </Slider>
       </div>
     </div>

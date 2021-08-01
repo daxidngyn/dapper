@@ -4,8 +4,8 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { FaWallet } from "react-icons/fa";
 
 const navigation = [
-  { name: "Marketplace", href: "#", current: false },
-  { name: "FAQ", href: "#", current: false },
+  { name: "Marketplace", href: "/marketplace", current: false },
+  { name: "FAQ", href: "/faq", current: false },
 ];
 
 function classNames(...classes) {
@@ -32,9 +32,12 @@ const Navbar = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <div className="text-2xl text-gray-900 font-semibold sm:bg-red-100 bg-blue-100 md:bg-green-100 lg:bg-yellow-100 xl:bg-pink-100">
+                  <a
+                    href="/"
+                    className="text-2xl text-gray-900 font-semibold sm:bg-red-100 bg-blue-100 md:bg-green-100 lg:bg-yellow-100 xl:bg-pink-100"
+                  >
                     Dapper
-                  </div>
+                  </a>
                 </div>
                 <div className="hidden sm:block sm:ml-6 w-full">
                   <div className="flex space-x-4 justify-end">
