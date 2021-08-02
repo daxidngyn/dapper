@@ -17,6 +17,7 @@ const Marketplace = () => {
 
   return (
     <div className="flex">
+      {/* Filter drawer */}
       <div
         className={`shadow-md text-black h-screen flex items-start justify-start border-r border-gray-200 ${
           open ? "w-64" : "w-16"
@@ -40,26 +41,8 @@ const Marketplace = () => {
           )}
         </div>
       </div>
-      <div className="bg-blue-100 flex flex-1">Test</div>
 
-      {/* <>
-          Marketplace
-           className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 ">
-            <span className="sr-only">Open main menu</span>
-            {open ? (
-              <div className="flex">
-                <div>Open</div>
-                
-              </div>
-            ) : (
-              <FaAngleRight
-                className="block h-6 w-6"
-                aria-hidden="true"
-                onClick={() => setOpen(true)}
-              />
-            )}
-          
-        </> */}
+      <div className="flex flex-1">Test</div>
     </div>
   );
 };

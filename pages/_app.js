@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "tailwindcss/tailwind.css";
 import Footer from "../components/Footer";
@@ -22,6 +22,11 @@ const config = {
 function MyApp({ Component, pageProps }) {
   const [connected, setConnected] = useState(false);
   const [account, setAccount] = useState("");
+  const [balance, setBalance] = useState("");
+
+  const getBalance = (account) => {
+    return;
+  };
 
   React.useEffect(() => {
     // const switchtest = async () => {
@@ -68,6 +73,7 @@ function MyApp({ Component, pageProps }) {
     // if (typeof window.ethereum !== "undefined") {
     //   login();
     // }
+
     const loadWeb3 = async () => {
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
@@ -80,12 +86,39 @@ function MyApp({ Component, pageProps }) {
     };
     const loadBlockchainData = async () => {
       const web3 = window.web3;
+      console.log(web3);
       const accounts = await web3.eth.getAccounts();
+      web3.eth.getBalance(accounts[0], (err, res) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // setUserData({
+          //   ...userData,
+          //   balance: web3.utils.fromWei(res, "ether"),
+          // });
+          setBalance(web3.utils.fromWei(res, "ether"));
+        }
+      });
       setAccount(accounts[0]);
     };
 
     loadWeb3();
     loadBlockchainData();
+
+    window.ethereum.on("accountsChanged", (accounts) => {
+      if (accounts.length > 0) {
+        setAccount(accounts[0]);
+        web3.eth.getBalance(accounts[0], (err, res) => {
+          if (err) {
+            console.log(err);
+          } else {
+            setBalance(web3.utils.fromWei(res, "ether"));
+          }
+        });
+      } else {
+        setAccount(accounts);
+      }
+    });
   }, []);
 
   React.useEffect(() => {
@@ -96,7 +129,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div className="">
-      <Navbar />
+      <Navbar account={account} balance={balance} />
       <Component {...pageProps} account={account} />
       <Footer />
     </div>

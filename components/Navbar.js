@@ -1,7 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { FaWallet } from "react-icons/fa";
+import { FaWallet, FaCopy } from "react-icons/fa";
 
 const navigation = [
   { name: "Marketplace", href: "/marketplace", current: false },
@@ -12,7 +12,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <Disclosure as="nav" className="shadow-md text-gray-900">
       {({ open }) => (
@@ -83,46 +83,54 @@ const Navbar = () => {
                       >
                         <Menu.Items
                           static
-                          className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                          className="origin-top-right absolute right-0 mt-2 w-72 text-sm rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
                         >
+                          {props.account.length > 0 ? (
+                            <>
+                              <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
+                                <div>My wallet</div>
+                                <div
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(
+                                      props.account
+                                    );
+                                  }}
+                                  className="cursor-pointer text-xs font-medium text-gray-500 flex items-center space-x-1"
+                                >
+                                  <div>{`${props.account.substr(
+                                    0,
+                                    6
+                                  )}...${props.account.substr(-4)}`}</div>
+
+                                  <FaCopy className="text-black" />
+                                </div>
+                              </div>
+                              <div className="flex items-center px-4 space-x-2 py-2 text-xs font-medium text-gray-500">
+                                <div>Total balance:</div>
+                                <div>{props.balance}</div>
+                              </div>
+                            </>
+                          ) : (
+                            <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
+                              Your wallet is not connected!
+                            </div>
+                          )}
+
                           <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Your Profile
-                              </a>
-                            )}
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                              My collection
+                            </a>
                           </Menu.Item>
                           <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Settings
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Sign out
-                              </a>
-                            )}
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                              Log out
+                            </a>
                           </Menu.Item>
                         </Menu.Items>
                       </Transition>
