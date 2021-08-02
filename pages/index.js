@@ -43,7 +43,7 @@ const PrevArrow = (props) => {
   );
 };
 
-export default function Home() {
+export default function Home(props) {
   const settings = {
     infinite: true,
     speed: 750,
@@ -97,9 +97,11 @@ export default function Home() {
               </div>
             </div>
             <div className="space-x-8 flex">
-              <button className="lg:p-4 sm:p-3 p-1.5 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out">
-                Connect wallet
-              </button>
+              {!props.account && (
+                <button className="lg:p-4 sm:p-3 p-1.5 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out">
+                  Connect wallet
+                </button>
+              )}
               <button className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
                 Explore our marketplace &rarr;
               </button>
