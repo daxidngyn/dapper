@@ -13,6 +13,12 @@ function classNames(...classes) {
 }
 
 const Navbar = (props) => {
+  useEffect(() => {
+    if (props.account) {
+      console.log(props.account, "PROPS");
+    }
+  }, [props]);
+
   return (
     <Disclosure as="nav" className="shadow-md text-gray-900">
       {({ open }) => (

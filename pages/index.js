@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 
+import React from "react";
+
 import svgHandshake from "../assets/svgHandshake.svg";
 import imgHandshake from "../assets/imgHandshake.png";
 import DapCard from "../components/DapCard";
@@ -97,7 +99,7 @@ export default function Home(props) {
               </div>
             </div>
             <div className="space-x-8 flex">
-              {props.account.length == 0 && (
+              {props.account.length == 0 && props.connected && (
                 <button
                   onClick={() => {
                     window.ethereum.request({ method: "eth_requestAccounts" });
