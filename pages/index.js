@@ -125,7 +125,7 @@ export default function Home(props) {
       </div>
       {/* WHAT IS DAPPER */}
       <div className=" h-auto py-20 bg-hero-pattern px-4 sm:px-8">
-        <div className="flex justify-center items-center bg-white p-8 mx-auto max-w-4xl rounded-md">
+        <div className="flex justify-center items-center bg-gradient-to-t from-blue-300 to-blue-50 p-8 mx-auto max-w-4xl rounded-md">
           <div className="grid sm:grid-cols-2 w-full space-y-4">
             <div className="flex flex-col justify-center">
               <Image src={imgHandshake} />
@@ -134,7 +134,7 @@ export default function Home(props) {
               <div className="md:text-4xl text-3xl font-semibold">
                 What is Dapper?
               </div>
-              <div className="text-lg text-gray-500">
+              <div className="text-lg text-black">
                 What a great question! We be minting handshakes don't sleep
               </div>
             </div>

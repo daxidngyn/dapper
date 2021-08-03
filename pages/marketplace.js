@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaFilter } from "react-icons/fa";
 
+import gif1 from "../public/GIFs/1.gif";
+import gif2 from "../public/GIFs/2.gif";
+import gif3 from "../public/GIFs/3.gif";
+import gif4 from "../public/GIFS/4.gif";
+
+import DapCard from "../components/DapCard";
+
 const navigation = [
   { name: "Marketplace", href: "/marketplace", current: false },
   { name: "FAQ", href: "/faq", current: false },
@@ -13,7 +20,7 @@ const Marketplace = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex">
+    <div className="flex ">
       {/* Filter drawer */}
       <div
         className={`shadow-md text-black h-screen flex items-start justify-start border-r border-gray-200 ${
@@ -43,7 +50,26 @@ const Marketplace = () => {
         </div>
       </div>
 
-      <div className="flex flex-1">Test</div>
+      <div className="flex flex-1">
+        <div className="flex flex-wrap pt-10 w-full   ">
+          <DapCard title="OYEA" gif={gif1} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
+          <DapCard title="4dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
+          <DapCard title="1dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
+          <DapCard title="2dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
+          <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
+        </div>
+      </div>
     </div>
   );
 };
