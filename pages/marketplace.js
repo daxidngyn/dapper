@@ -1,8 +1,5 @@
-import React, { useState, Fragment } from "react";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
-
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { FaWallet, FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaAngleLeft, FaAngleRight, FaFilter } from "react-icons/fa";
 
 const navigation = [
   { name: "Marketplace", href: "/marketplace", current: false },
@@ -26,9 +23,13 @@ const Marketplace = () => {
         <div className="flex w-full">
           {open ? (
             <div
-              className="flex w-full justify-end items-center mt-0.5 border-b p-4 hover:shadow-md cursor-pointer"
+              className="flex w-full justify-between items-center mt-0.5 border-b p-4 hover:shadow-md cursor-pointer"
               onClick={() => setOpen(false)}
             >
+              <div className="flex items-center space-x-1.5">
+                <FaFilter />
+                <div className="text-gray-900">Filter</div>
+              </div>
               <FaAngleLeft className="block h-6 w-6" aria-hidden="true" />
             </div>
           ) : (

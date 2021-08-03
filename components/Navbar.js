@@ -1,7 +1,9 @@
 import { Fragment, useContext, useEffect } from "react";
+import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { FaWallet, FaCopy } from "react-icons/fa";
+import metamaskLogo from "../public/metamask.png";
 
 const navigation = [
   { name: "Marketplace", href: "/marketplace", current: false },
@@ -111,33 +113,63 @@ const Navbar = (props) => {
                                   <FaCopy className="text-black" />
                                 </div>
                               </div>
+                              <Menu.Item>
+                                <a
+                                  href="#"
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                >
+                                  My collection
+                                </a>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <a
+                                  href="#"
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                >
+                                  Log out
+                                </a>
+                              </Menu.Item>
                               <div className="flex items-center px-4 space-x-2 py-2 text-xs font-medium text-gray-500">
                                 <div>Total balance:</div>
                                 <div>{props.balance}</div>
                               </div>
                             </>
                           ) : (
-                            <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
-                              Your wallet is not connected!
-                            </div>
-                          )}
+                            <>
+                              <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
+                                Your wallet is not connected!
+                              </div>
+                              <div className="px-4 py-2 text-gray-600 font-medium text-xs">
+                                Please select a wallet to connect to:
+                              </div>
+                              {props.account.length == 0 && props.connected && (
+                                <div className="flex items-center space-x-1 px-4 py-2 cursor-pointer hover:bg-gray-100">
+                                  <div className="relative h-8 w-8">
+                                    <Image
+                                      src={metamaskLogo}
+                                      objectFit="cover"
+                                      layout="fill"
+                                    />
+                                  </div>
 
-                          <Menu.Item>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              My collection
-                            </a>
-                          </Menu.Item>
-                          <Menu.Item>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              Log out
-                            </a>
-                          </Menu.Item>
+                                  <button
+                                    onClick={() => {
+                                      window.ethereum
+                                        .request({
+                                          method: "eth_requestAccounts",
+                                        })
+                                        .catch((err) => {
+                                          console.log(err, "err");
+                                        });
+                                    }}
+                                    className="font-bold tracking-wide"
+                                  >
+                                    MetaMask
+                                  </button>
+                                </div>
+                              )}
+                            </>
+                          )}
                         </Menu.Items>
                       </Transition>
                     </>

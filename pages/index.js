@@ -81,48 +81,51 @@ export default function Home(props) {
         <title>Dapper</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4">
-        <div className="grid md:grid-cols-2 w-full grid-cols-1">
-          <div className="2xl:pl-36 space-y-12 pt-2 md:order-1 order-2">
-            <div className="space-y-1">
-              <div className="xl:text-7xl md:text-6xl sm:text-7xl text-5xl font-semibold">
-                Welcome to
+      <div class="bg-gradient-to-t from-blue-50 to-blue-300">
+        <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4 ">
+          <div className="grid md:grid-cols-2 w-full grid-cols-1">
+            <div className="2xl:pl-36 space-y-12 pt-2 md:order-1 order-2">
+              <div className="space-y-1">
+                <div className="xl:text-7xl md:text-6xl sm:text-7xl text-5xl font-semibold">
+                  Welcome to
+                </div>
+                <div className="xl:text-8xl lg:text-7xl sm:text-8xl text-7xl text-blue-600 font-bold">
+                  Dapper
+                </div>
               </div>
-              <div className="xl:text-8xl lg:text-7xl sm:text-8xl text-7xl text-blue-600 font-bold">
-                Dapper
+              <div>
+                <div className="text-2xl text-gray-700">
+                  The greeting we all know and love, now digitalized.
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-2xl text-gray-700">
-                The greeting we all know and love, now digitalized.
-              </div>
-            </div>
-            <div className="space-x-8 flex">
-              {props.account.length == 0 && props.connected && (
-                <button
-                  onClick={() => {
-                    window.ethereum.request({ method: "eth_requestAccounts" });
-                  }}
-                  className="lg:p-4 sm:p-3 p-1.5 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out"
-                >
-                  Connect wallet
+              <div className="space-x-8 flex">
+                {props.account.length == 0 && props.connected && (
+                  <button
+                    onClick={() => {
+                      window.ethereum.request({
+                        method: "eth_requestAccounts",
+                      });
+                    }}
+                    className="lg:p-4 sm:p-3 p-1.5 bg-gray-800 ring-2 ring-gray-900 text-white rounded-sm hover:bg-gray-700 hover:ring-gray-800 delay-50 ease-in-out"
+                  >
+                    Connect wallet
+                  </button>
+                )}
+                <button className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
+                  <a href="/marketplace">Explore our marketplace &rarr;</a>
                 </button>
-              )}
-              <button className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
-                <a href="/marketplace">Explore our marketplace &rarr;</a>
-              </button>
+              </div>
             </div>
-          </div>
 
-          <div className="order-1 md:order-2">
-            <Image src={imgHandshake} />
+            <div className="order-1 md:order-2">
+              <Image src={imgHandshake} />
+            </div>
           </div>
         </div>
       </div>
       {/* WHAT IS DAPPER */}
       <div className=" h-auto py-20 bg-hero-pattern px-4 sm:px-8">
-        <div className="flex justify-center items-center bg-blue-100 p-8 mx-auto max-w-4xl rounded-md">
+        <div className="flex justify-center items-center bg-white p-8 mx-auto max-w-4xl rounded-md">
           <div className="grid sm:grid-cols-2 w-full space-y-4">
             <div className="flex flex-col justify-center">
               <Image src={imgHandshake} />

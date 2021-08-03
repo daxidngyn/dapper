@@ -130,7 +130,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div className="">
-      <Navbar account={account} balance={balance} />
+      <Navbar account={account} balance={balance} connected={connected} />
       <Component {...pageProps} account={account} connected={connected} />
       <Footer />
     </div>
