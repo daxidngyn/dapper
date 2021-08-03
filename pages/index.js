@@ -141,7 +141,6 @@ export default function Home(props) {
           </div>
         </div>
       </div>
-      {/*md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center*/}
       <div className="text-center w-full text-gray-900 px-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
         <div className="text-2xl font-medium">Featured Daps</div>
         <Slider {...settings} className="">

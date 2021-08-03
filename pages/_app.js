@@ -105,27 +105,34 @@ function MyApp({ Component, pageProps }) {
       }
     };
 
+    const getBalance = (account) => {
+      web3.eth.getBalance(account, (err, res) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // setBalance(web3.utils.fromWei(res, "ether"));
+          console.log(web3.utils.fromWei(res, "ether"), "BALANCE");
+        }
+      });
+    };
+
+    const listenMMAccount = async () => {
+      window.ethereum.on("accountsChanged", async function () {
+        let accounts = await web3.eth.getAccounts();
+        if (accounts.length > 0) {
+          setAccount(accounts[0]);
+          getBalance(accounts[0]);
+        } else {
+        }
+      });
+    };
+
     if (typeof window.ethereum !== "undefined") {
       setConnected(true);
       loadWeb3();
       loadBlockchainData();
+      listenMMAccount();
     }
-
-    window.ethereum.on("accountsChanged", (accounts) => {
-      console.log("accountsChanged:", accounts);
-      if (accounts.length > 0) {
-        setAccount(accounts[0]);
-        web3.eth.getBalance(accounts[0], (err, res) => {
-          if (err) {
-            console.log(err);
-          } else {
-            setBalance(web3.utils.fromWei(res, "ether"));
-          }
-        });
-      } else {
-        setAccount(accounts);
-      }
-    });
   }, []);
 
   return (
