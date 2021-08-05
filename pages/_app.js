@@ -110,8 +110,8 @@ function MyApp({ Component, pageProps }) {
         if (err) {
           console.log(err);
         } else {
-          // setBalance(web3.utils.fromWei(res, "ether"));
-          console.log(web3.utils.fromWei(res, "ether"), "BALANCE");
+          setBalance(web3.utils.fromWei(res, "ether"));
+          // console.log(web3.utils.fromWei(res, "ether"), "BALANCE");
         }
       });
     };
@@ -123,6 +123,7 @@ function MyApp({ Component, pageProps }) {
           setAccount(accounts[0]);
           getBalance(accounts[0]);
         } else {
+          setAccount([]);
         }
       });
     };

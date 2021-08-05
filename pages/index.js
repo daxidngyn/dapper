@@ -111,9 +111,12 @@ export default function Home(props) {
                     Connect wallet
                   </button>
                 )}
-                <button className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out">
-                  <a href="/marketplace">Explore our marketplace &rarr;</a>
-                </button>
+                <a
+                  href="/marketplace"
+                  className="lg:p-4 p-1.5 bg-blue-600 ring-2 ring-blue-500 text-white rounded-sm hover:bg-blue-500 hover:ring-blue-400 delay-50 ease-in-out"
+                >
+                  Explore our marketplace &rarr;
+                </a>
               </div>
             </div>
 

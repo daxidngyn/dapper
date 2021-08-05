@@ -143,7 +143,18 @@ const Navbar = (props) => {
                                 Please select a wallet to connect to:
                               </div>
                               {props.account.length == 0 && props.connected && (
-                                <div className="flex items-center space-x-1 px-4 py-2 cursor-pointer hover:bg-gray-100">
+                                <div
+                                  onClick={() => {
+                                    window.ethereum
+                                      .request({
+                                        method: "eth_requestAccounts",
+                                      })
+                                      .catch((err) => {
+                                        console.log(err, "err");
+                                      });
+                                  }}
+                                  className="flex items-center space-x-1 px-4 py-2 cursor-pointer hover:bg-gray-100"
+                                >
                                   <div className="relative h-8 w-8">
                                     <Image
                                       src={metamaskLogo}
@@ -152,20 +163,9 @@ const Navbar = (props) => {
                                     />
                                   </div>
 
-                                  <button
-                                    onClick={() => {
-                                      window.ethereum
-                                        .request({
-                                          method: "eth_requestAccounts",
-                                        })
-                                        .catch((err) => {
-                                          console.log(err, "err");
-                                        });
-                                    }}
-                                    className="font-bold tracking-wide"
-                                  >
+                                  <div className="font-bold tracking-wide">
                                     MetaMask
-                                  </button>
+                                  </div>
                                 </div>
                               )}
                             </>
