@@ -55,7 +55,7 @@ const Marketplace = () => {
           {/* 3xl:flex  flex-wrap */}
           <div
             className="px-5 my-10 sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 
-          3xl:grid-cols-4 4xl:grid-cols-5 5xl:grid-cols-6 6xl:grid-cols-7 xxl:grid-cols-8"
+          3xl:flex  flex-wrap "
           >
             <DapCard title="OYEA" gif={gif1} />
             <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />

@@ -82,9 +82,9 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div class="bg-gradient-to-t from-blue-50 to-blue-300">
-        <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4 ">
+        <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container max-w-7xl mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4 ">
           <div className="grid md:grid-cols-2 w-full grid-cols-1">
-            <div className="2xl:pl-36 space-y-12 pt-2 md:order-1 order-2">
+            <div className="px-18 space-y-12 pt-2 md:order-1 order-2">
               <div className="space-y-1">
                 <div className="xl:text-7xl md:text-6xl sm:text-7xl text-5xl font-semibold">
                   Welcome to
@@ -144,7 +144,7 @@ export default function Home(props) {
           </div>
         </div>
       </div>
-      <div className="text-center w-full text-gray-900 px-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
+      <div className="text-center max-w-7xl w-full text-gray-900 p-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
         <div className="text-2xl font-medium">Featured Daps</div>
         <Slider {...settings} className="">
           <DapCard title="1" gif={gif1} />
