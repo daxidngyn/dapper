@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import svgHandshake from "../assets/svgHandshake.svg";
 import imgHandshake from "../assets/imgHandshake.png";
@@ -12,6 +12,7 @@ import gif1 from "../public/GIFs/1.gif";
 import gif2 from "../public/GIFs/2.gif";
 import gif3 from "../public/GIFs/3.gif";
 import gif4 from "../public/GIFS/4.gif";
+import axios from "axios";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -74,6 +75,28 @@ export default function Home(props) {
       },
     ],
   };
+
+  const [dapHashes, setDapHashes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let hashes = [];
+
+    axios("https://dapper-backend-alexhzheng.vercel.app/api/dap/featured").then(
+      (res) => {
+        res.data.map((dapData) => {
+          hashes.push(dapData);
+        });
+      }
+    );
+    setDapHashes(hashes);
+  }, []);
+  useEffect(() => {
+    if (dapHashes.length > 0) {
+      setLoading(false);
+      console.log(dapHashes, "daphahses!");
+    }
+  }, [dapHashes]);
 
   return (
     <div className="">
@@ -146,11 +169,14 @@ export default function Home(props) {
       </div>
       <div className="text-center max-w-7xl w-full text-gray-900 p-8 md:pt-18 sm:pt-12 pt-6 container mx-auto ">
         <div className="text-2xl font-medium">Featured Daps</div>
+
         <Slider {...settings} className="">
-          <DapCard title="1" gif={gif1} />
-          <DapCard title="2" gif={gif2} />
-          <DapCard title="3" gif={gif3} />
-          <DapCard title="4" gif={gif4} />
+          {dapHashes.map((hash) => (
+            <DapCard
+              title={hash.name}
+              gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
+            />
+          ))}
         </Slider>
       </div>
     </div>

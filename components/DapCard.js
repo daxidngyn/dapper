@@ -3,17 +3,13 @@ import svgHandshake from "../assets/svgHandshake.svg";
 
 const DapCard = ({ title, gif }) => {
   return (
-    // <div className="flex-auto p-4 bg-red-100 w-64">
-    //   <div className="h-64 relative">
-    //     <Image src={gif} alt="featured_dap" objectFit="cover" layout="fill" />
-    //   </div>
-
-    //   <div className="px-6 py-4 w-full bg-red-200">
-    //     <div className="font-bold">{title}</div>
-    //   </div>
-    // </div>
-    <div className="shadow-lg m-4 group p-4 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
-      <Image src={gif} layout="responsive" height={1080} width={1920} />
+    <div
+      onClick={() => {
+        console.log("PURCHASING DAP");
+      }}
+      className="shadow-lg m-4 group p-4 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50"
+    >
+      <img src={gif} layout="responsive" height={1080} width={1920} />
 
       <div className="p-4">
         <p className="font-bold truncate max-w-md">{title}</p>
