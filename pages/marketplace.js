@@ -14,7 +14,6 @@ const Marketplace = () => {
   const [hashes, setHashes] = useState([]);
 
   useEffect(() => {
-    let hashes = [];
     axios("https://dapper-backend.vercel.app/api/dap/allDaps").then((res) => {
       setHashes(res.data.daps);
     });
