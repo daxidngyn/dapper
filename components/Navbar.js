@@ -1,18 +1,26 @@
-import { Fragment } from "react";
+import { Fragment, useContext, useEffect } from "react";
+import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { FaWallet } from "react-icons/fa";
+import { FaWallet, FaCopy } from "react-icons/fa";
+import metamaskLogo from "../public/metamask.png";
 
 const navigation = [
-  { name: "Marketplace", href: "#", current: false },
-  { name: "FAQ", href: "#", current: false },
+  { name: "Marketplace", href: "/marketplace", current: false },
+  { name: "FAQ", href: "/faq", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
+  useEffect(() => {
+    if (props.account) {
+      console.log(props.account, "PROPS");
+    }
+  }, [props]);
+
   return (
     <Disclosure as="nav" className="shadow-md text-gray-900">
       {({ open }) => (
@@ -32,9 +40,12 @@ const Navbar = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <div className="text-2xl text-gray-900 font-semibold sm:bg-red-100 bg-blue-100 md:bg-green-100 lg:bg-yellow-100 xl:bg-pink-100">
+                  <a
+                    href="/"
+                    className="text-2xl text-gray-900 font-semibold sm:bg-red-100 bg-blue-100 md:bg-green-100 lg:bg-yellow-100 xl:bg-pink-100"
+                  >
                     Dapper
-                  </div>
+                  </a>
                 </div>
                 <div className="hidden sm:block sm:ml-6 w-full">
                   <div className="flex space-x-4 justify-end">
@@ -80,47 +91,85 @@ const Navbar = () => {
                       >
                         <Menu.Items
                           static
-                          className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                          className="origin-top-right absolute right-0 mt-2 w-72 text-sm rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
                         >
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Your Profile
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Settings
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Sign out
-                              </a>
-                            )}
-                          </Menu.Item>
+                          {props.account.length > 0 ? (
+                            <>
+                              <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
+                                <div>My wallet</div>
+                                <div
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(
+                                      props.account
+                                    );
+                                  }}
+                                  className="cursor-pointer text-xs font-medium text-gray-500 flex items-center space-x-1"
+                                >
+                                  <div>{`${props.account.substr(
+                                    0,
+                                    6
+                                  )}...${props.account.substr(-4)}`}</div>
+
+                                  <FaCopy className="text-black" />
+                                </div>
+                              </div>
+                              <Menu.Item>
+                                <a
+                                  href="#"
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                >
+                                  My collection
+                                </a>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <a
+                                  href="#"
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                >
+                                  Log out
+                                </a>
+                              </Menu.Item>
+                              <div className="flex items-center px-4 space-x-2 py-2 text-xs font-medium text-gray-500">
+                                <div>Total balance:</div>
+                                <div>{props.balance}</div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="px-4 py-3 font-semibold flex justify-between items-center border-b">
+                                Your wallet is not connected!
+                              </div>
+                              <div className="px-4 py-2 text-gray-600 font-medium text-xs">
+                                Please select a wallet to connect to:
+                              </div>
+                              {props.account.length == 0 && props.connected && (
+                                <div
+                                  onClick={() => {
+                                    window.ethereum
+                                      .request({
+                                        method: "eth_requestAccounts",
+                                      })
+                                      .catch((err) => {
+                                        console.log(err, "err");
+                                      });
+                                  }}
+                                  className="flex items-center space-x-1 px-4 py-2 cursor-pointer hover:bg-gray-100"
+                                >
+                                  <div className="relative h-8 w-8">
+                                    <Image
+                                      src={metamaskLogo}
+                                      objectFit="cover"
+                                      layout="fill"
+                                    />
+                                  </div>
+
+                                  <div className="font-bold tracking-wide">
+                                    MetaMask
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
                         </Menu.Items>
                       </Transition>
                     </>
