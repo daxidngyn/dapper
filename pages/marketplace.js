@@ -16,19 +16,9 @@ const Marketplace = () => {
   useEffect(() => {
     let hashes = [];
     axios("https://dapper-backend.vercel.app/api/dap/allDaps").then((res) => {
-      res.data.daps.map((dapData) => {
-        hashes.push(dapData);
-      });
-      // console.log(res.data.daps, "RES");
+      setHashes(res.data.daps);
     });
-    setHashes(hashes);
   }, []);
-
-  useEffect(() => {
-    if (hashes.length > 0) {
-      console.log(hashes, "hashg nigga");
-    }
-  }, [hashes]);
 
   return (
     <>
@@ -65,14 +55,16 @@ const Marketplace = () => {
         <div className="flex-1">
           {/* 3xl:flex  flex-wrap */}
           <div
-            className="px-5 my-10 sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 
+            className="px-5 sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 
           3xl:flex  flex-wrap "
           >
             {hashes.map((hash) => (
-              <DapCard
-                title={hash.name}
-                gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
-              />
+              <>
+                <DapCard
+                  title={hash.name}
+                  gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
+                />
+              </>
             ))}
             {/* <DapCard title="OYEA" gif={gif1} />
             <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />

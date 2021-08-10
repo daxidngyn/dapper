@@ -84,19 +84,10 @@ export default function Home(props) {
 
     axios("https://dapper-backend-alexhzheng.vercel.app/api/dap/featured").then(
       (res) => {
-        res.data.map((dapData) => {
-          hashes.push(dapData);
-        });
+        setDapHashes(res.data);
       }
     );
-    setDapHashes(hashes);
   }, []);
-  useEffect(() => {
-    if (dapHashes.length > 0) {
-      setLoading(false);
-      console.log(dapHashes, "daphahses!");
-    }
-  }, [dapHashes]);
 
   return (
     <div className="">
