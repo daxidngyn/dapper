@@ -1,5 +1,4 @@
 import Image from "next/image";
-import svgHandshake from "../assets/svgHandshake.svg";
 
 const DapCard = ({ title, gif }) => {
   return (

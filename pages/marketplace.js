@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaFilter } from "react-icons/fa";
 
-import gif1 from "../public/GIFs/1.gif";
-import gif2 from "../public/GIFs/2.gif";
-import gif3 from "../public/GIFs/3.gif";
-import gif4 from "../public/GIFS/4.gif";
-
 import DapCard from "../components/DapCard";
 import axios from "axios";
 
@@ -60,6 +55,7 @@ const Marketplace = () => {
             {hashes.map((hash) => (
               <>
                 <DapCard
+                  key={hash.ipfsVideoHash}
                   title={hash.name}
                   gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
                 />

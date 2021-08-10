@@ -13,6 +13,16 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const config = {
+  CONTRACT_ADDR: "0xdB66AcA61A75F38101b40c94155Fb1A1a872115c",
+  NET_ID: 80001,
+  CHAIN_ID: "0x13881",
+  CHAIN_NAME: "Matic Testnet Mumbai",
+  RPC_URL:
+    "https://rpc-mumbai.maticvigil.com/v1/a8f72913d3433046ab491c005256aec91a7a92b0",
+  BLOCK_EXPLORER_URL: "https://explorer-mainnet.maticvigil.com/",
+  ABI_URL: "contract/Dapper.json",
+};
 
 const Navbar = (props) => {
   useEffect(() => {
@@ -119,6 +129,42 @@ const Navbar = (props) => {
                                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
                                   My collection
+                                </a>
+                              </Menu.Item>
+                              <Menu.Item
+                                onClick={() => {
+                                  const switchMaticChain = async () => {
+                                    await ethereum
+                                      .request({
+                                        method: "wallet_addEthereumChain",
+                                        params: [
+                                          {
+                                            chainId: config.CHAIN_ID,
+                                            chainName: config.CHAIN_NAME,
+                                            nativeCurrency: {
+                                              name: "MATIC Token",
+                                              symbol: "MATIC", // 2-6 characters long
+                                              decimals: 18,
+                                            },
+                                            rpcUrls: [config.RPC_URL],
+                                            blockExplorerUrls: [
+                                              config.BLOCK_EXPLORER_URL,
+                                            ],
+                                          },
+                                        ],
+                                      })
+                                      .then(async () => {
+                                        console.log("worked?");
+                                      });
+                                  };
+                                  switchMaticChain();
+                                }}
+                              >
+                                <a
+                                  href="#"
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                >
+                                  Switch chain
                                 </a>
                               </Menu.Item>
                               <Menu.Item>

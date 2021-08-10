@@ -3,15 +3,11 @@ import Image from "next/image";
 
 import React, { useState, useEffect } from "react";
 
-import svgHandshake from "../assets/svgHandshake.svg";
-import imgHandshake from "../assets/imgHandshake.png";
+import svgHandshake from "../public/svgHandshake.svg";
+import imgHandshake from "../public/imgHandshake.png";
 import DapCard from "../components/DapCard";
 import Slider from "react-slick";
 
-import gif1 from "../public/GIFs/1.gif";
-import gif2 from "../public/GIFs/2.gif";
-import gif3 from "../public/GIFs/3.gif";
-import gif4 from "../public/GIFS/4.gif";
 import axios from "axios";
 
 import "slick-carousel/slick/slick.css";
@@ -164,6 +160,7 @@ export default function Home(props) {
         <Slider {...settings} className="">
           {dapHashes.map((hash) => (
             <DapCard
+              key={hash.ipfsVideoHash}
               title={hash.name}
               gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
             />
