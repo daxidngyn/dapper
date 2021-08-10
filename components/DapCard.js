@@ -5,7 +5,13 @@ const DapCard = ({ title, gif }) => {
   return (
     <div
       onClick={() => {
-        console.log("PURCHASING DAP");
+        if (window.ethereum.selectedAddress === null) {
+          console.log("user not logged");
+        } else {
+          web3.ethereum.net.getId((id) => {
+            console.log(id);
+          });
+        }
       }}
       className="shadow-lg m-4 group p-4 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50"
     >
