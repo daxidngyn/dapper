@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
 import "tailwindcss/tailwind.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 const Web3 = require("web3");
-var web3 = new Web3(Web3.givenProvider);
+// var web3 = new Web3(Web3.givenProvider);
 
 const config = {
   CONTRACT_ADDR: "0x8450c24d7DfCBa03D50a794ca598e838C19b1Acb",
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState("");
   const [balance, setBalance] = useState("");
 
-  useEffect(() => {
+  React.useEffect(() => {
     // const switchtest = async () => {
     //   await ethereum
     //     .request({
@@ -98,49 +98,11 @@ function MyApp({ Component, pageProps }) {
       //     setBalance(web3.utils.fromWei(res, "ether"));
       //   }
       // });
-  const [maticConnected, setMaticConnected] = useState();
-
-  useEffect(() => {
-    const loadWeb3 = async () => {
-      // if (window.ethereum) {
-      //   console.log("case 1");
-      //   const accounts = await ethereum.request({
-      //     method: "eth_requestAccounts",
-      //   });
-      //   web3.eth.net.getId().then((netId) => {
-      //     if (netId != config.NET_ID) {
-      //       setMaticConnected(false);
-      //       console.log("connect to matic");
-      //     }
-      //   });
-      //   // window.web3 = new Web3(window.ethereum);
-      //   // await window.ethereum.enable();
-      // } else {
-      //   console.log("case 3");
-      //   window.alert("Non-ethereum browser detected!");
-      // }
-      web3.eth.getAccounts().then((accounts) => {
-        if (accounts[0]) {
-          web3.eth.net.getId().then(async (netId) => {
-            if (netId != config.NET_ID) {
-              setMaticConnected(false);
-            }
-          });
-        }
-      });
-    };
-    const loadBlockchainData = async () => {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
       console.log(accounts, "ACCOUNTS");
       if (accounts.length > 0) {
         console.log("FOUND ACCOUNT!");
         setAccount(accounts[0]);
-        getBalance(accounts[0]);
       }
-      return accounts;
     };
 
     const getBalance = (account) => {
