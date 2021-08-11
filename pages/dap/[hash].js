@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { FaWallet } from "react-icons/fa";
@@ -8,6 +9,10 @@ export async function getServerSideProps(context) {
     props: {},
   };
 }
+
+const ipfsLoader = ({ src, width, quality }) => {
+  return `https://cloudflare-ipfs.com/ipfs/${src}`;
+};
 
 const DapInfo = () => {
   const router = useRouter();
@@ -37,10 +42,12 @@ const DapInfo = () => {
         <div>{dapData.status}</div>
       </div>
 
-      <img
-        src={`https://cloudflare-ipfs.com/ipfs/${dapData.ipfsVideoHash}`}
-        className="w-96 h-96"
-      />
+      <div className="h-64 w-full max-w-md">
+        <div className="relative h-full w-full">
+          <Image loader={ipfsLoader} src={hash} layout="fill" />
+        </div>
+      </div>
+
       <div>
         <button className="ring-blue-500 ring-2 p-2 rounded-md flex items-center space-x-1.5 group hover:bg-blue-500">
           <FaWallet

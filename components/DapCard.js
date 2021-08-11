@@ -1,7 +1,13 @@
+import { useState } from "react";
 import Image from "next/image";
+import clsx from "clsx";
 import config from "../utils/config";
 const Web3 = require("web3");
 var web3 = new Web3(Web3.givenProvider || config.RPC_URL);
+
+const ipfsLoader = ({ src, width, quality }) => {
+  return `https://cloudflare-ipfs.com/ipfs/${src}?w=${width}`;
+};
 
 const DapCard = ({ title, gif }) => {
   return (
@@ -21,9 +27,15 @@ const DapCard = ({ title, gif }) => {
           });
         }
       }}
-      className="shadow-lg m-4 group p-4 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50"
+      className={`shadow-lg m-4 group p-4 cursor-pointer transition-opacity duration-200 ease-in transform sm:hover:scale-105 hover:z-50`}
     >
-      <img src={gif} layout="responsive" height={1080} width={1920} />
+      <Image
+        loader={ipfsLoader}
+        src={gif}
+        layout="responsive"
+        height={1080}
+        width={1920}
+      />
 
       <div className="p-4">
         <p className="font-bold truncate max-w-md">{title}</p>

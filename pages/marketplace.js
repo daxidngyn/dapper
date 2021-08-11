@@ -60,10 +60,7 @@ const Marketplace = () => {
                 key={hash.ipfsVideoHash}
               >
                 <div>
-                  <DapCard
-                    title={hash.name}
-                    gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
-                  />
+                  <DapCard title={hash.name} gif={hash.ipfsVideoHash} />
                 </div>
               </Link>
             ))}

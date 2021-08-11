@@ -162,7 +162,7 @@ export default function Home(props) {
             <DapCard
               key={hash.ipfsVideoHash}
               title={hash.name}
-              gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
+              gif={hash.ipfsVideoHash}
             />
           ))}
         </Slider>
