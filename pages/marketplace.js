@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { FaAngleLeft, FaAngleRight, FaFilter } from "react-icons/fa";
 
 import DapCard from "../components/DapCard";
@@ -53,30 +54,19 @@ const Marketplace = () => {
           3xl:flex  flex-wrap "
           >
             {hashes.map((hash) => (
-              <>
-                <DapCard
-                  key={hash.ipfsVideoHash}
-                  title={hash.name}
-                  gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
-                />
-              </>
+              <Link
+                href={"/dap/" + hash.ipfsVideoHash}
+                // as={"/dap/" + hash.ipfsVideoHash}
+                key={hash.ipfsVideoHash}
+              >
+                <div>
+                  <DapCard
+                    title={hash.name}
+                    gif={`https://cloudflare-ipfs.com/ipfs/${hash.ipfsVideoHash}`}
+                  />
+                </div>
+              </Link>
             ))}
-            {/* <DapCard title="OYEA" gif={gif1} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
-            <DapCard title="4dfhjsdkhfjdkshfjkdshfksd" gif={gif4} />
-            <DapCard title="1dfhjsdkhfjdkshfjkdshfksd" gif={gif1} />
-            <DapCard title="2dfhjsdkhfjdkshfjkdshfksd" gif={gif2} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif3} />
-            <DapCard title="dfhjsdkhfjdkshfjkdshfksd" gif={gif4} /> */}
           </div>
         </div>
       </div>
