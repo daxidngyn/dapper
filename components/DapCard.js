@@ -1,14 +1,23 @@
 import Image from "next/image";
+import config from "../utils/config";
+const Web3 = require("web3");
+var web3 = new Web3(Web3.givenProvider || config.RPC_URL);
 
 const DapCard = ({ title, gif }) => {
   return (
     <div
       onClick={() => {
-        if (window.ethereum.selectedAddress === null) {
+        if (!window.ethereum) {
           console.log("user not logged");
         } else {
-          web3.ethereum.net.getId((id) => {
-            console.log(id);
+          web3.eth.getAccounts().then((accounts) => {
+            if (accounts[0]) {
+              web3.eth.net.getId().then(async (netId) => {
+                console.log(netId);
+              });
+            } else {
+              console.log("not connected");
+            }
           });
         }
       }}
