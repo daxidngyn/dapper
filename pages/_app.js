@@ -91,12 +91,24 @@ function MyApp({ Component, pageProps }) {
       loadWeb3();
       listenMMAccount();
     }
+    loadWeb3();
   }, []);
 
   return (
     <div className="">
-      <Navbar account={account} balance={balance} connected={connected} />
-      <Component {...pageProps} account={account} connected={connected} />
+      <Navbar
+        account={account}
+        balance={balance}
+        connected={connected}
+        maticConnected={maticConnected}
+      />
+      <Component
+        {...pageProps}
+        account={account}
+        connected={connected}
+        maticConnected={maticConnected}
+        setMaticConnected={setMaticConnected}
+      />
       <Footer />
       {maticConnected == false && (
         <div className="transition transform fixed z-100 bottom-0 inset-x-0 pb-2 sm:pb-5 opacity-100 scale-100 translate-y-0 ease-out duration-500">

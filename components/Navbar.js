@@ -155,6 +155,8 @@ const Navbar = (props) => {
                                       })
                                       .then(async () => {
                                         console.log("worked?");
+                                        window.location.reload(false);
+                                        props.setMaticConnected(true);
                                       });
                                   };
                                   switchMaticChain();
@@ -167,14 +169,7 @@ const Navbar = (props) => {
                                   Switch chain
                                 </a>
                               </Menu.Item>
-                              <Menu.Item>
-                                <a
-                                  href="#"
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                >
-                                  Log out
-                                </a>
-                              </Menu.Item>
+
                               <div className="flex items-center px-4 space-x-2 py-2 text-xs font-medium text-gray-500">
                                 <div>Total balance:</div>
                                 <div>{props.balance}</div>
