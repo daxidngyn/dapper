@@ -110,7 +110,7 @@ const DapInfo = () => {
             onClick={() => {
               let Contract = null;
               axios
-                .get("http://localhost:3001/api/dap/contract")
+                .get("https://dapper-backend.vercel.app/api/dap/contract")
                 .then(function (data) {
                   return data.data.abi;
                 })
@@ -124,9 +124,12 @@ const DapInfo = () => {
                 });
               const mintDap = async (dapName) => {
                 axios
-                  .post("http://localhost:3001/api/tokensale/buyDap", {
-                    dap: dapName,
-                  })
+                  .post(
+                    "https://dapper-backend.vercel.app/api/tokensale/buyDap",
+                    {
+                      dap: dapName,
+                    }
+                  )
                   .then(function (data) {
                     mintingDap(data.data.daps, Contract);
                   });
