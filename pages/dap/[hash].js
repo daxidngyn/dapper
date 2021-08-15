@@ -29,7 +29,7 @@ const mintingDap = async (dapId, contract) => {
         {
           from: window.web3.currentProvider.selectedAddress,
           to: config.CONTRACT_ADDR,
-          value: (3200000000000000).toString(16),
+          value: (1000000000000000000).toString(16),
           data: contract.methods.mintDap(dapId).encodeABI(),
         },
       ],
