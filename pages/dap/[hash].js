@@ -78,6 +78,7 @@ const DapInfo = () => {
 
   const [dapData, setDapData] = useState({});
   const [disable, setDisable] = useState(false);
+  const [minter, setMinter] = useState("");
 
   useEffect(() => {
     const getDaps = async () => {
@@ -100,39 +101,11 @@ const DapInfo = () => {
 
     if (dapData.status === "claimed") {
       axios
-        .get("https://dapper-backend.vercel.app/api/dap/contract")
-        .then(function (data) {
-          return data.data.abi;
+        .post("https://dapper-backend.vercel.app/api/dap/minter", {
+          id: dapData.tokenId,
         })
-        .then(function (abi) {
-          console.log(abi);
-          const Contract = new web3_matic.eth.Contract(
-            abi,
-            config.CONTRACT_ADDR
-          );
-          // Contract.methods
-          //   .ownerOf(dapData.tokenId)
-          //   .call()
-          //   .then(function (res) {
-          //     console.log(res);
-          //     // var ownerlink = "https://opensea.io/accounts/${res}/niftypalette";
-          //     // var assetlink = `https://opensea.io/assets/matic/0x521a3867dee220c09f1d60696af6ecc18c0bf4d3/${parseInt(
-          //     //   hex,
-          //     //   16
-          //     // )}`;
-          //     // $("#owner").html(
-          //     //   (
-          //     //     <a href="${assetlink}" target="_blank">
-          //     //       trade
-          //     //     </a>
-          //     //   ) |
-          //     //     (
-          //     //       <a href="${ownerlink}" target="_blank">
-          //     //         owner
-          //     //       </a>
-          //     //     )
-          //     // );
-          //   });
+        .then(function (res) {
+          setMinter(res.data.daps[0]);
         });
     }
   }, [dapData]);
@@ -197,7 +170,7 @@ const DapInfo = () => {
               <a className="text-xl text-white">Claimed</a>
             </div>
 
-            <div>Owner</div>
+            <div>{minter}</div>
           </div>
         )}
       </div>
