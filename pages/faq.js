@@ -39,7 +39,7 @@ const Faq = () => {
   }, []);
 
   return (
-    <div className="pt-16 pb-12">
+    <div className="py-14">
       <div className="container mx-auto pt-16 pb-5`">
         <div className="text-center pb-3 md:pb-10 xl:pb-20">
           <h1 className="px-2 xl:px-0 xl:text-5xl md:text-3xl text-2xl ">

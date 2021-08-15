@@ -50,10 +50,7 @@ const Navbar = (props) => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <a
-                    href="/"
-                    className="text-2xl text-gray-900 font-semibold sm:bg-red-100 bg-blue-100 md:bg-green-100 lg:bg-yellow-100 xl:bg-pink-100"
-                  >
+                  <a href="/" className="text-2xl text-gray-900 font-semibold">
                     Dapper
                   </a>
                 </div>
