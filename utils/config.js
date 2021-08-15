@@ -1,12 +1,11 @@
 //testnet
 const config = {
-  CONTRACT_ADDR: "0x06BCC7Ad62D18D174E7279837C7C782D239F6D10",
+  CONTRACT_ADDR: "0x88730Ec65A48a29a17aB5FEcf0fAb4Fb3ea898E1",
   NET_ID: 4,
   CHAIN_ID: "4",
   CHAIN_NAME: "Rinkeby",
-  RPC_URL:
-    "https://rpc-mumbai.maticvigil.com/v1/a8f72913d3433046ab491c005256aec91a7a92b0",
-  BLOCK_EXPLORER_URL: "https://explorer-mainnet.maticvigil.com/",
+  RPC_URL: "https://rinkeby.infura.io/v3/81f0e303b8ae496ab150f52b8f7ce0ae",
+  BLOCK_EXPLORER_URL: "https://rinkeby.etherscan.io/",
 };
 
 module.exports = config;
