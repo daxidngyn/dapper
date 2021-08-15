@@ -36,9 +36,10 @@ const Faq = () => {
               </div>
               {question === 0 && (
                 <div className="p-2 text-lg bg-gray-50  rounded-md">
-                  Simply go to the Marketplace click on your desired handshalke
-                  and press mint! Once you mint iot it wll show that uyoui
-                  claiomed it.You will also need a Metamask wallet.
+                  Simply go to the Marketplace, click on your desired
+                  handshake(dap), and press mint! Once you mint it it will show
+                  that you have claimed it. In addition, you will also need a
+                  Metamask wallet.
                 </div>
               )}
             </div>
@@ -58,14 +59,51 @@ const Faq = () => {
                 )}
               </div>
               {question === 1 && (
-                <div className="p-2 text-lg bg-gray-50 rounded-md">
-                  If you DON'T live in the United States: Go to TRANSAK and buy
-                  some directly on the Matic network (MAKE SURE YOU PURCHASE
-                  MATIC ON THE MATIC NETWORK). If you live in the United States:
-                  Get Ethereum and transfer Ethereum to Matic using the official
-                  bridge: https://wallet.matic.network/bridge/. You will pay gas
-                  for the transfer, but everything else you do on the Matic
-                  network (buy, trade, sell) will have extremely low gas fees.{" "}
+                <div className="p-2 text-lg bg-gray-50 rounded-md space-y-4">
+                  <div className="">
+                    If you <strong>DON'T </strong> live in the United States:
+                    <div>
+                      Go to TRANSAK and buy some directly on the Matic network
+                      (MAKE SURE YOU PURCHASE MATIC ON THE MATIC NETWORK).
+                    </div>
+                  </div>
+                  <div className="">
+                    If you live in the United States:
+                    <div className="flex">
+                      <div>
+                        Get Ethereum and transfer Ethereum to Matic using the
+                        official
+                      </div>
+                      &nbsp;
+                      <a
+                        className="text-blue-400 hover:text-blue-500 hover:font-medium"
+                        href="https://wallet.matic.network/bridge/"
+                      >
+                        bridge
+                      </a>
+                      .
+                    </div>
+                  </div>
+                  {/* <div className="flex">
+                    <p>If you</p> <p className="font-bold">DON'T</p> live in the
+                    United States: Go to TRANSAK and buy some directly on the
+                    Matic network (MAKE SURE YOU PURCHASE MATIC ON THE MATIC
+                    NETWORK).
+                  </div>
+                  <div>
+                    {" "}
+                    If you live in the United States: Get Ethereum and transfer
+                    Ethereum to Matic using the official{" "}
+                  </div>
+                  <a
+                    className="text-blue-400 hover:text-blue-500"
+                    href="https://wallet.matic.network/bridge/"
+                  >
+                    bridge
+                  </a>
+                  . You will pay gas for the transfer, but everything else you
+                  do on the Matic network (buy, trade, sell) will have extremely
+                  low gas fees.{" "}*/}
                 </div>
               )}
             </div>
