@@ -13,7 +13,7 @@ function Footer() {
           <div>
             {/* <FaEthereum size={56} /> */}
             <div className="text-blue-600 text-4xl font-bold tracking-wide">
-              Dapper.
+              Dapper
             </div>
           </div>
           <div className="text-black flex flex-col md:items-center">

@@ -57,11 +57,14 @@ const mintingDap = async (dapId, contract) => {
 
 function confirmTrxBackend(dap, status, addr) {
   axios
-    .post("http://dapper-backend.vercel.app/api/tokensale/confirmTransaction", {
-      dapTokenIds: dap,
-      status: status,
-      minterAddress: addr,
-    })
+    .post(
+      "https://dapper-backend.vercel.app/api/tokensale/confirmTransaction",
+      {
+        dapTokenIds: dap,
+        status: status,
+        minterAddress: addr,
+      }
+    )
     .then(function (data) {
       console.log(data);
     })
@@ -91,12 +94,12 @@ const DapInfo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-4 py-5">
+    <div className="flex flex-col justify-center items-center space-y-6 py-12">
       <div className="flex flex-col justify-center items-center space-y-2">
         <h1 className="text-2xl tracking-wider uppercase">{dapData.name}</h1>
       </div>
 
-      <div className="h-64 w-full max-w-md">
+      <div className="h-80 w-full max-w-lg">
         <div className="relative h-full w-full">
           <Image loader={ipfsLoader} src={hash} layout="fill" />
         </div>
