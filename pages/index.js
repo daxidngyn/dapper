@@ -147,9 +147,8 @@ export default function Home(props) {
                 What is Dapper?
               </div>
               <div className="text-lg text-black">
-                Dapper is a meta-NFT handshake collectible based on Ethereum
-                Layer 2 Polygon. We provide our customers with iconic handshakes
-                from the internet for you to mint!
+                Dapper is a meta-NFT handshake collectible based on Ethereum. We
+                provide iconic handshakes from the web for you to mint!
               </div>
             </div>
           </div>

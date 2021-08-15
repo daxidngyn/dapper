@@ -7,6 +7,16 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 const Faq = () => {
   const [question, setquestion] = useState(0);
 
+  const questions = [
+    { question: "Marketplace", href: "/marketplace", current: false },
+    {
+      question: "How do I mint a Dap?",
+      answer:
+        "Simply go to the Marketplace, click on your desired handshake(dap), and press mint! Once you mint it it will show that you have claimed it. In addition, you will also need a Metamask wallet.",
+      current: false,
+    },
+  ];
+
   useEffect(() => {
     setquestion(null);
   }, []);
@@ -78,6 +88,8 @@ const Faq = () => {
                       <a
                         className="text-blue-400 hover:text-blue-500 hover:font-medium"
                         href="https://wallet.matic.network/bridge/"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         bridge
                       </a>
