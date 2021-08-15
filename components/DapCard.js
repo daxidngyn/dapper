@@ -42,9 +42,9 @@ const DapCard = ({ title, gif }) => {
         <h2 className="mt-1 text-2xl transition-all duration-100 ease-in-out group-hover:font-bold">
           {title}
         </h2>
-        <p className="flex items-center opacity-0 group-hover:opacity-100">
+        {/* <p className="flex items-center opacity-0 group-hover:opacity-100">
           Gang Shit
-        </p>
+        </p> */}
       </div>
     </div>
   );

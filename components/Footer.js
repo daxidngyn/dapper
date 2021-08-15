@@ -2,8 +2,8 @@ import React from "react";
 import { FaEthereum } from "react-icons/fa";
 function Footer() {
   const navigation = [
-    { name: "Marketplace", href: "#", current: false },
-    { name: "FAQ", href: "#", current: false },
+    { name: "Marketplace", href: "/marketplace", current: false },
+    { name: "FAQ", href: "/faq", current: false },
   ];
 
   return (
@@ -11,18 +11,25 @@ function Footer() {
       <div className="border-t-2">
         <div className="mx-auto container pt-8 flex flex-col items-center justify-center">
           <div>
-            <FaEthereum size={56} />
+            {/* <FaEthereum size={56} /> */}
+            <div className="text-blue-600 text-4xl font-bold tracking-wide">
+              Dapper.
+            </div>
           </div>
           <div className="text-black flex flex-col md:items-center">
             {/* <h1 className="text-2xl font-black">Dapper</h1> */}
             <div className="my-6">
-              <ul className="flex items-center space-x-8">
+              <div className="flex items-center space-x-8">
                 {navigation.map((route) => (
-                  <li className="cursor-pointer lg:py-0" key={route.name}>
+                  <a
+                    className="cursor-pointer lg:py-0"
+                    key={route.name}
+                    href={route.href}
+                  >
                     {route.name}
-                  </li>
+                  </a>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* <div className="text-sm text-color mb-10">

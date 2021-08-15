@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-import svgHandshake from "../public/svgHandshake.svg";
 import imgHandshake from "../public/imgHandshake.png";
 import DapCard from "../components/DapCard";
 import Slider from "react-slick";
@@ -104,7 +103,7 @@ export default function Home(props) {
                 </div>
               </div>
               <div>
-                <div className="text-2xl text-gray-700">
+                <div className="text-3xl text-gray-700">
                   The greeting we all know and love, now digitalized.
                 </div>
               </div>
@@ -159,11 +158,15 @@ export default function Home(props) {
 
         <Slider {...settings} className="">
           {dapHashes.map((hash) => (
-            <DapCard
+            <Link
+              href={"/dap/" + hash.ipfsVideoHash}
+              // as={"/dap/" + hash.ipfsVideoHash}
               key={hash.ipfsVideoHash}
-              title={hash.name}
-              gif={hash.ipfsVideoHash}
-            />
+            >
+              <div>
+                <DapCard title={hash.name} gif={hash.ipfsVideoHash} />
+              </div>
+            </Link>
           ))}
         </Slider>
       </div>

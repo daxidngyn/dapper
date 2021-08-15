@@ -1,9 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import "tailwindcss/tailwind.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import config from "../utils/config";
+import { BsFillExclamationCircleFill } from "react-icons/bs";
+import { route } from "next/dist/server/router";
 
 // const config = {
 //   CONTRACT_ADDR: "0xdB66AcA61A75F38101b40c94155Fb1A1a872115c",
@@ -25,6 +27,7 @@ function MyApp({ Component, pageProps }) {
   const [balance, setBalance] = useState("");
 
   const [maticConnected, setMaticConnected] = useState();
+  const [alertStatus, setAlertStatus] = useState(false);
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
@@ -37,9 +40,9 @@ function MyApp({ Component, pageProps }) {
           web3.eth.net.getId().then(async (netId) => {
             if (netId != config.NET_ID) {
               setMaticConnected(false);
-
-              console.log("connect to matic");
+              console.log("matic not connected!");
             } else {
+              setMaticConnected(true);
               web3.eth.getBalance(accounts[0], (err, res) => {
                 if (err) {
                   console.log(err);
@@ -62,7 +65,7 @@ function MyApp({ Component, pageProps }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     // const getBalance = (account) => {
     //   web3.eth.getBalance(account, (err, res) => {
     //     if (err) {
@@ -79,7 +82,24 @@ function MyApp({ Component, pageProps }) {
         let accounts = await web3.eth.getAccounts();
         if (accounts.length > 0) {
           setAccount(accounts[0]);
-          // getBalance(accounts[0]);
+          web3.eth.net.getId().then(async (netId) => {
+            if (netId != config.NET_ID) {
+              setMaticConnected(false);
+              console.log("matic not connected!");
+            } else {
+              setMaticConnected(true);
+              web3.eth.getBalance(accounts[0], (err, res) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  const wei = web3.utils.fromWei(res, "wei");
+                  let matic = wei / 1000000000000000000;
+                  setBalance(matic);
+                  // console.log(web3.utils.fromWei(res, "ether"), "BALANCE");
+                }
+              });
+            }
+          });
         } else {
           setAccount([]);
         }
@@ -93,6 +113,12 @@ function MyApp({ Component, pageProps }) {
     }
     loadWeb3();
   }, []);
+
+  useEffect(() => {
+    if (maticConnected == false) {
+      setAlertStatus(true);
+    }
+  }, [maticConnected]);
 
   return (
     <div className="">
@@ -110,10 +136,16 @@ function MyApp({ Component, pageProps }) {
         setMaticConnected={setMaticConnected}
       />
       <Footer />
-      {maticConnected == false && (
-        <div className="transition transform fixed z-100 bottom-0 inset-x-0 pb-2 sm:pb-5 opacity-100 scale-100 translate-y-0 ease-out duration-500">
-          <div className="bg-gray-800 text-white flex justify-center items-center cursor-pointer mx-auto px-12">
-            Connect to Matic
+      {maticConnected == false && account.length > 0 && alertStatus == true && (
+        <div
+          onClick={() => {
+            setAlertStatus(false);
+          }}
+          className="fixed z-100 flex items-end flex-col bottom-0 right-0 transition transform  pb-2 sm:pb-5 opacity-100 scale-100 translate-y-0 ease-out duration-500 "
+        >
+          <div className="space-x-4 border-l-4 border-blue-600 bg-gray-800 text-white text-xl flex justify-center items-center cursor-pointer mx-auto py-6 px-8">
+            <BsFillExclamationCircleFill size={24} />
+            <div>Please connect to the Polygon network.</div>
           </div>
         </div>
       )}

@@ -91,7 +91,7 @@ const DapInfo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-4 p-4">
+    <div className="flex flex-col justify-center items-center space-y-4 py-5">
       <div className="flex flex-col justify-center items-center space-y-2">
         <h1 className="text-2xl tracking-wider uppercase">{dapData.name}</h1>
       </div>
@@ -145,11 +145,9 @@ const DapInfo = () => {
             <a className="text-xl text-blue-500 group-hover:text-white">Mint</a>
           </button>
         ) : (
-          <button className="ring-blue-500 ring-2 p-2 rounded-md flex items-center space-x-1.5 group hover:bg-blue-500">
-            <a className="text-xl text-blue-500 group-hover:text-white">
-              Claimed
-            </a>
-          </button>
+          <div className="ring-blue-500 ring-2 p-2 rounded-md flex items-center space-x-1.5 bg-blue-500">
+            <a className="text-xl text-white">Claimed</a>
+          </div>
         )}
       </div>
     </div>

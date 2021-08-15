@@ -17,10 +17,10 @@ const Marketplace = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex py-5">
         {/* Filter drawer */}
-        <div
-          className={`shadow-md text-black h-screen flex items-start justify-start border-r border-gray-200 ${
+        {/* <div
+          className={`shadow-md text-black min-h-screen flex items-start justify-start border-r border-gray-200 ${
             open ? "w-64" : "w-16"
           }`}
         >
@@ -45,13 +45,13 @@ const Marketplace = () => {
               </div>
             )}
           </div>
-        </div>
-        {/* flex-wrap */}
+        </div> */}
         <div className="flex-1">
           {/* 3xl:flex  flex-wrap */}
+          {/* */}
           <div
             className="px-5 sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 
-          3xl:flex  flex-wrap "
+          3xl:grid-cols-4 4xl:grid-cols-5 5xl:grid-cols-6 6xl:grid-cols-7 xxl:grid-cols-8"
           >
             {hashes.map((hash) => (
               <Link
