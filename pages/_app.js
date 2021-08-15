@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import config from "../utils/config";
 
 import { BsFillExclamationCircleFill } from "react-icons/bs";
-import { route } from "next/dist/server/router";
 
 // const config = {
 //   CONTRACT_ADDR: "0xdB66AcA61A75F38101b40c94155Fb1A1a872115c",
