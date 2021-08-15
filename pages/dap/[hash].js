@@ -21,7 +21,6 @@ const web3_matic = new Web3(
 );
 
 const mintingDap = async (dapId, contract) => {
-  const oneMATIC = 1000000000000000000;
   console.log(dapId);
   ethereum
     .request({
@@ -30,7 +29,7 @@ const mintingDap = async (dapId, contract) => {
         {
           from: window.web3.currentProvider.selectedAddress,
           to: config.CONTRACT_ADDR,
-          value: (0).toString(16),
+          value: (3200000000000000).toString(16),
           data: contract.methods.mintDap(dapId).encodeABI(),
         },
       ],
@@ -170,7 +169,9 @@ const DapInfo = () => {
               <a className="text-xl text-white">Claimed</a>
             </div>
 
-            <div>{minter}</div>
+            <div>
+              <a href="#">{minter}</a>
+            </div>
           </div>
         )}
       </div>

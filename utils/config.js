@@ -1,6 +1,6 @@
 //testnet
 const config = {
-  CONTRACT_ADDR: "0x2ff714aEBB86aCeC740C2521A3133D7abacD4D11",
+  CONTRACT_ADDR: "0x88730Ec65A48a29a17aB5FEcf0fAb4Fb3ea898E1",
   NET_ID: 4,
   CHAIN_ID: "4",
   CHAIN_NAME: "Rinkeby",
