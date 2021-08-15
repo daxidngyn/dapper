@@ -27,7 +27,7 @@ const DapCard = ({ title, gif }) => {
           });
         }
       }}
-      className={`shadow-lg m-4 group p-4 cursor-pointer transition-opacity duration-200 ease-in transform sm:hover:scale-105 hover:z-50`}
+      className={`border border-gray-200 rounded-md m-4 group p-4 cursor-pointer transition-opacity duration-200 ease-in transform sm:hover:shadow-md hover:z-50`}
     >
       <Image
         loader={ipfsLoader}

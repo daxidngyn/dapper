@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import config from "../utils/config";
+
 import { BsFillExclamationCircleFill } from "react-icons/bs";
 import { route } from "next/dist/server/router";
 

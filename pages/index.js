@@ -90,7 +90,7 @@ export default function Home(props) {
         <title>Dapper</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div class="bg-gradient-to-t from-blue-50 to-blue-300">
+      <div className="bg-gradient-to-t from-blue-50 to-blue-300">
         <div className="pb-16 md:pt-24 sm:pt-12 pt-6 container max-w-7xl mx-auto flex flex-wrap flex-col items-center w-full text-gray-900 px-4 ">
           <div className="grid md:grid-cols-2 w-full grid-cols-1">
             <div className="px-18 space-y-12 pt-2 md:order-1 order-2">
@@ -147,7 +147,9 @@ export default function Home(props) {
                 What is Dapper?
               </div>
               <div className="text-lg text-black">
-                What a great question! We be minting handshakes don't sleep
+                Dapper is a meta-NFT handshake collectible based on Ethereum
+                Layer 2 Polygon. We provide our customers with iconic handshakes
+                from the internet for you to mint!
               </div>
             </div>
           </div>

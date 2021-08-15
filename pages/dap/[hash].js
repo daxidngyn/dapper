@@ -67,6 +67,7 @@ function confirmTrxBackend(dap, status, addr) {
     )
     .then(function (data) {
       console.log(data);
+      window.location.reload(false);
     })
     .catch(function (res) {});
 }
@@ -81,25 +82,68 @@ const DapInfo = () => {
   useEffect(() => {
     const getDaps = async () => {
       const res = await axios(
-        "https://dapper-backend.vercel.app/api/dap/allDaps"
+        "https://dapper-backend.vercel.app/api/dap/" + hash
       );
-      res.data.daps.map((dap) => {
-        if (dap.ipfsVideoHash == hash) {
-          setDapData(dap);
-          console.log(dapData, "dap info");
-        }
-      });
+      setDapData(res.data.dap);
+      // res.data.daps.map((dap) => {
+      //   if (dap.ipfsVideoHash == hash) {
+      //     setDapData(dap);
+      //     console.log(dapData, "dap info");
+      //   }
+      // });
     };
     getDaps();
   }, []);
 
+  useEffect(() => {
+    console.log(dapData);
+
+    if (dapData.status === "claimed") {
+      axios
+        .get("https://dapper-backend.vercel.app/api/dap/contract")
+        .then(function (data) {
+          return data.data.abi;
+        })
+        .then(function (abi) {
+          console.log(abi);
+          const Contract = new web3_matic.eth.Contract(
+            abi,
+            config.CONTRACT_ADDR
+          );
+          // Contract.methods
+          //   .ownerOf(dapData.tokenId)
+          //   .call()
+          //   .then(function (res) {
+          //     console.log(res);
+          //     // var ownerlink = "https://opensea.io/accounts/${res}/niftypalette";
+          //     // var assetlink = `https://opensea.io/assets/matic/0x521a3867dee220c09f1d60696af6ecc18c0bf4d3/${parseInt(
+          //     //   hex,
+          //     //   16
+          //     // )}`;
+          //     // $("#owner").html(
+          //     //   (
+          //     //     <a href="${assetlink}" target="_blank">
+          //     //       trade
+          //     //     </a>
+          //     //   ) |
+          //     //     (
+          //     //       <a href="${ownerlink}" target="_blank">
+          //     //         owner
+          //     //       </a>
+          //     //     )
+          //     // );
+          //   });
+        });
+    }
+  }, [dapData]);
+
   return (
-    <div className="flex flex-col justify-center items-center space-y-4 py-5">
+    <div className="flex flex-col justify-center items-center space-y-6 py-12">
       <div className="flex flex-col justify-center items-center space-y-2">
         <h1 className="text-2xl tracking-wider uppercase">{dapData.name}</h1>
       </div>
 
-      <div className="h-64 w-full max-w-md">
+      <div className="h-80 w-full max-w-lg">
         <div className="relative h-full w-full">
           <Image loader={ipfsLoader} src={hash} layout="fill" />
         </div>
@@ -148,8 +192,12 @@ const DapInfo = () => {
             <a className="text-xl text-blue-500 group-hover:text-white">Mint</a>
           </button>
         ) : (
-          <div className="ring-blue-500 ring-2 p-2 rounded-md flex items-center space-x-1.5 bg-blue-500">
-            <a className="text-xl text-white">Claimed</a>
+          <div className="flex justify-center items-center space-x-4">
+            <div className="ring-blue-500 ring-2 p-2 rounded-md flex items-center space-x-1.5 bg-blue-500">
+              <a className="text-xl text-white">Claimed</a>
+            </div>
+
+            <div>Owner</div>
           </div>
         )}
       </div>
