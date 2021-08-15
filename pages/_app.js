@@ -102,6 +102,7 @@ function MyApp({ Component, pageProps }) {
             }
           });
         } else {
+          setBalance();
           setAccount([]);
         }
       });
@@ -146,7 +147,7 @@ function MyApp({ Component, pageProps }) {
         >
           <div className="space-x-4 border-l-4 border-blue-600 bg-gray-800 text-white text-xl flex justify-center items-center cursor-pointer mx-auto py-6 px-8">
             <BsFillExclamationCircleFill size={24} />
-            <div>Please connect to the Polygon network.</div>
+            <div>Please connect to the Ethereum network.</div>
           </div>
         </div>
       )}

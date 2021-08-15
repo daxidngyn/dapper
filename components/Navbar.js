@@ -131,48 +131,40 @@ const Navbar = (props) => {
                                   My collection
                                 </a>
                               </Menu.Item>
-                              <Menu.Item
-                                onClick={() => {
-                                  const switchMaticChain = async () => {
-                                    await ethereum
-                                      .request({
-                                        method: "wallet_addEthereumChain",
-                                        params: [
-                                          {
-                                            chainId: config.CHAIN_ID,
-                                            chainName: config.CHAIN_NAME,
-                                            nativeCurrency: {
-                                              name: "MATIC Token",
-                                              symbol: "MATIC", // 2-6 characters long
-                                              decimals: 18,
-                                            },
-                                            rpcUrls: [config.RPC_URL],
-                                            blockExplorerUrls: [
-                                              config.BLOCK_EXPLORER_URL,
-                                            ],
-                                          },
-                                        ],
-                                      })
-                                      .then(async () => {
-                                        console.log("worked?");
-                                        window.location.reload(false);
-                                        props.setMaticConnected(true);
-                                      });
-                                  };
-                                  switchMaticChain();
-                                }}
-                              >
-                                <a
-                                  href="#"
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              {props.maticConnected == false && (
+                                <Menu.Item
+                                  onClick={() => {
+                                    const switchChain = async () => {
+                                      await ethereum
+                                        .request({
+                                          method: "wallet_switchEthereumChain",
+                                          params: [{ chainId: "0x4" }],
+                                        })
+                                        .then(async () => {
+                                          console.log("worked?");
+                                          window.location.reload(false);
+                                          props.setMaticConnected(true);
+                                        });
+                                    };
+                                    switchChain();
+                                  }}
                                 >
-                                  Switch chain
-                                </a>
-                              </Menu.Item>
+                                  <a
+                                    href="#"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  >
+                                    Switch chain
+                                  </a>
+                                </Menu.Item>
+                              )}
 
                               <div className="flex items-center px-4 space-x-2 py-2 text-xs font-medium text-gray-500">
                                 <div>Total balance:</div>
-                                <div>{props.balance}</div>
+                                <div>
+                                  {props.balance == ""
+                                    ? "Can't find balance!"
+                                    : props.balance}
+                                </div>
                               </div>
                             </>
                           ) : (
