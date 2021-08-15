@@ -57,11 +57,14 @@ const mintingDap = async (dapId, contract) => {
 
 function confirmTrxBackend(dap, status, addr) {
   axios
-    .post("http://dapper-backend.vercel.app/api/tokensale/confirmTransaction", {
-      dapTokenIds: dap,
-      status: status,
-      minterAddress: addr,
-    })
+    .post(
+      "https://dapper-backend.vercel.app/api/tokensale/confirmTransaction",
+      {
+        dapTokenIds: dap,
+        status: status,
+        minterAddress: addr,
+      }
+    )
     .then(function (data) {
       console.log(data);
     })
